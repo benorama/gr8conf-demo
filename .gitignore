@@ -1,0 +1,27 @@
+# GRAILS files
+/web-app/WEB-INF
+/target
+/target-eclipse
+/plugin.xml
+
+# GRUNT files (Node modules dependencies)
+/node_modules
+
+# IDE files
+.classpath
+.idea/
+.project
+.settings
+/*.launch
+/*.tmproj
+
+*.log
+*.iml
+*.zip
+/out
+cobertura.ser
+*.sha1
+*.db
+dist
+.gradle/
+.DS_Store
