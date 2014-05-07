@@ -33,6 +33,15 @@
             <p>
                 Welcome Back!
             </p>
+            <p>
+                <h2>Pick a release date</h2>
+                <div class="input-group">
+                    <input class="form-control span2 datepicker" type="text" data-date-format="dd/mm/yyyy">
+                    <span class="input-group-addon">
+                        <i class="fa fa-calendar-o fa-fw"></i>
+                    </span>
+                </div>
+            </p>
         </sec:ifLoggedIn>
 
         <sec:ifNotLoggedIn>
@@ -56,6 +65,7 @@
 </div>
 
 <div class="container">
+
     Logged with facebook?
     <s2o:ifLoggedInWith provider="facebook">yes</s2o:ifLoggedInWith>
     <s2o:ifNotLoggedInWith provider="facebook">no</s2o:ifNotLoggedInWith><br/>

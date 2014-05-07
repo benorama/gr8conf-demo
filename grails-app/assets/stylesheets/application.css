@@ -1,5 +1,7 @@
 /*
-*= require bootstrap-gr8conf
+*= require bootstrap
+*= require font-awesome
+*= require libs/bootstrap-datepicker/css/datepicker3
 */
 
 /* Move down content because we have a fixed navbar that is 50px tall */

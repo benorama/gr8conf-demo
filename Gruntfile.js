@@ -9,9 +9,15 @@ module.exports = function(grunt) {
         less: {
             bootstrap: {
                 files: {
-                    'grails-app/assets/stylesheets/bootstrap-gr8conf.css': 'src/less/bootstrap-gr8conf.less'
+                    'grails-app/assets/stylesheets/bootstrap.css': 'src/less/bootstrap.less'
+                }
+            },
+            'font-awesome': {
+                files: {
+                    'grails-app/assets/stylesheets/font-awesome.css': 'src/less/font-awesome.less'
                 }
             }
+
         },
         watch: {
             options: {
@@ -19,7 +25,7 @@ module.exports = function(grunt) {
             },
             css: {
                 files: ['src/less/*.less'],
-                tasks: ['less:bootstrap']
+                tasks: ['less']
             }
         }
     });
