@@ -45,6 +45,7 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
         mavenRepo "http://repo.spring.io/milestone/"
+        mavenRepo 'http://dl.bintray.com/karman/karman' // For CDN Asset Pipeline plugin
     }
 
     dependencies {
@@ -61,7 +62,16 @@ grails.project.dependency.resolution = {
         compile ':spring-security-oauth:2.0.2'
         compile ':spring-security-oauth-facebook:0.1'
 
+        compile ':newrelic:1.0-2.18.0'
+        compile ':raven:0.5.8' // Sentry
+
         // plugins needed at runtime but not for compilation
         runtime ':hibernate:3.6.10.13'
+        runtime ':segmentio:0.4.2'
+
+        // plugins not required in war
+        provided ':cdn-asset-pipeline:0.3.4'
+        provided ':version-update:1.1.1'
+
     }
 }

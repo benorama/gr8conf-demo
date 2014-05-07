@@ -7,6 +7,9 @@
 # GRUNT files (Node modules dependencies)
 /node_modules
 
+# BOWER dependencies
+/grails-app/assets/dependencies
+
 # IDE files
 .classpath
 .idea/
