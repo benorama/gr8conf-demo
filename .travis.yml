@@ -1,0 +1,10 @@
+language: groovy
+jdk: oraclejdk7
+notifications:
+  hipchat:
+    rooms:
+      secure: "pojETP+goUHpZu+SgeCwFQzWZ8nxpMPXWNEzzoWmmjgnCojcXdB4P9GR3zSzTKJU0L5alkheOGuHGP24Fpildtm32vdK0tA/7bm7lK00VWdDxHU4N3PIzny9sJ0VMwu+U+gj3dXgWDUpQvBCWfWvUcfLE+TB4lC+jqtmk07MSto="
+before:
+- ./grailsw refresh-dependencies
+script:
+- ./grailsw "test-app unit:"
