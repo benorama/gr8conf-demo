@@ -1,3 +1,5 @@
+import org.scribe.builder.api.GoogleApi
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -11,7 +13,9 @@
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]
 // }
 
-grails.app.context = '/' // Deploy to root in local dev mode
+// Deploy to root and set env variables in local dev mode
+grails.app.context = '/'
+grails.config.locations = ["file:${userHome}/.grails/gr8conf-config.groovy"]
 
 // The ACCEPT header will not be used for content negotiation for user agents containing the following strings (defaults to the 4 major rendering engines)
 grails.mime.disable.accept.header.userAgents = ['Gecko', 'WebKit', 'Presto', 'Trident']
@@ -120,28 +124,49 @@ log4j = {
            'net.sf.ehcache.hibernate'
 }
 
+// Grails config
+environments {
+    development {
+        grails.serverURL = "http://localhost:8080"
+    }
+    production {
+        grails.serverURL = System.getProperty('GRAILS_SERVER_URL')
+    }
+}
+
 // OAuth config
 oauth {
     providers {
-        facebook {
-            api = org.scribe.builder.api.FacebookApi
-            key = '271215756385985'
-            secret = '5454094e56d19f1fb02a5c4bdb1e33ce'
-            callback = "http://localhost:8080/oauth/facebook/callback"
-            successUri = '/springSecurityOAuth/onSuccess?provider=facebook'
-            failureUri = '/springSecurityOAuth/onFailure'
-            //callback = "${baseURL}/oauth/facebook/callback"
-            //callback = "${System.getProperty('AP_MANAGER_URL')}/oauth/twitter/callback"
-            //successUri = "${System.getProperty('AP_MANAGER_URL')}/twitter/oauth/success"
-            //failureUri = "${System.getProperty('AP_MANAGER_URL')}/twitter/oauth/failure"
+        if (System.getProperty('OAUTH_FACEBOOK_KEY') && System.getProperty('OAUTH_FACEBOOK_SECRET')) {
+            facebook {
+                api = org.scribe.builder.api.FacebookApi
+                key = System.getProperty('OAUTH_FACEBOOK_KEY')
+                secret = System.getProperty('OAUTH_FACEBOOK_SECRET')
+                callback = "${grails.serverURL}/oauth/facebook/callback"
+                successUri = '/springSecurityOAuth/onSuccess?provider=facebook'
+                failureUri = '/springSecurityOAuth/onFailure'
+            }
         }
-        /*
-        twitter {
-                api = TwitterApi
-                key = 'my-key'
-                secret = 'my-secret'
+        if (System.getProperty('OAUTH_GOOGLE_KEY') && System.getProperty('OAUTH_GOOGLE_SECRET')) {
+            twitter {
+                api = org.scribe.builder.api.GoogleApi
+                key = System.getProperty('OAUTH_GOOGLE_KEY')
+                secret = System.getProperty('OAUTH_GOOGLE_SECRET')
+                callback = "${grails.serverURL}/oauth/google/callback"
+                successUri = '/springSecurityOAuth/onSuccess?provider=google'
+                failureUri = '/springSecurityOAuth/onFailure'
+            }
         }
-        */
+        if (System.getProperty('OAUTH_TWITTER_KEY') && System.getProperty('OAUTH_TWITTER_SECRET')) {
+            twitter {
+                api = org.scribe.builder.api.TwitterApi
+                key = System.getProperty('OAUTH_TWITTER_KEY')
+                secret = System.getProperty('OAUTH_TWITTER_SECRET')
+                callback = "${grails.serverURL}/oauth/twitter/callback"
+                successUri = '/springSecurityOAuth/onSuccess?provider=twitter'
+                failureUri = '/springSecurityOAuth/onFailure'
+            }
+        }
     }
 }
 
