@@ -56,6 +56,7 @@ grails.project.dependency.resolution = {
     plugins {
         // plugins for the build system only
         build ':tomcat:7.0.52.1'
+        build ':aws-elastic-beanstalk:0.3-SNAPSHOT'
 
         // plugins for the compile step
         compile ':asset-pipeline:1.8.7'
