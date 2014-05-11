@@ -175,12 +175,13 @@ grails.plugin.springsecurity.userLookup.userDomainClassName = 'gr8conf.demo.User
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'gr8conf.demo.UserRole'
 grails.plugin.springsecurity.authority.className = 'gr8conf.demo.Role'
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-	'/':                              ['permitAll'],
-	'/index':                         ['permitAll'],
-	'/index.gsp':                     ['permitAll'],
-    '/oauth/**':                      ['permitAll'],
-    '/springSecurityOAuth/**':        ['permitAll'],
-    '/**/assets/**':                  ['permitAll']
+	'/': ['permitAll'],
+	'/index': ['permitAll'],
+	'/index.gsp': ['permitAll'],
+    '/monitor/**': ['permitAll'],
+    '/oauth/**': ['permitAll'],
+    '/springSecurityOAuth/**': ['permitAll'],
+    '/**/assets/**': ['permitAll']
 ]
 
 
@@ -213,5 +214,32 @@ grails {
         minifyOptions = [
                 mangleOptions: [mangle: false] // Otherwise it generate issues with AngularJS dependencies injection
         ]
+    }
+}
+
+
+/**
+ * AWS Beanstalk (only used by Travis for deployment)
+ */
+grails {
+    plugin {
+        awsElasticBeanstalk {
+            serviceEndpointUrl = 'https://elasticbeanstalk.eu-west-1.amazonaws.com'
+            accessKey = System.getProperty('BEANSTALK_ACCESS_KEY')
+            secretKey = System.getProperty('BEANSTALK_SECRET_KEY')
+            applicationName = 'Demo'
+        }
+    }
+}
+environments {
+    production {
+        grails {
+            plugin {
+                awsElasticBeanstalk {
+                    environmentName = "gr8conf-${appVersion.replaceAll('\\.' ,'-')}"
+                    savedConfigurationName = 'gr8conf'
+                }
+            }
+        }
     }
 }
