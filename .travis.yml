@@ -1,10 +1,23 @@
 language: groovy
 jdk: oraclejdk7
+
 notifications:
   hipchat:
     rooms:
       secure: "pojETP+goUHpZu+SgeCwFQzWZ8nxpMPXWNEzzoWmmjgnCojcXdB4P9GR3zSzTKJU0L5alkheOGuHGP24Fpildtm32vdK0tA/7bm7lK00VWdDxHU4N3PIzny9sJ0VMwu+U+gj3dXgWDUpQvBCWfWvUcfLE+TB4lC+jqtmk07MSto="
+
+env:
+  global:
+    # $BEANSTALK_ACCESS_KEY from 'travis encrypt "BEANSTALK_ACCESS_KEY=..."'
+    - secure: "H+laspJNiVcRlUaSLA2tYXsfGkgkAzZxgvQzRqWoIxqhn/PrmGwNHfpSfTOUiwXYYvGI8nroGRR0TdKwBWKz5vqaSXi/Zlc0nrJwVHyzVKNz33bhvj8pqxyWZ/PgRnkOOa2sKbVlQlqdcSkVLCc4+KohieiChsMD5htr+Miz65s="
+    # $BEANSTALK_SECRET_KEY  from 'travis encrypt "BEANSTALK_SECRET_KEY=..."'
+    - secure: "c/nj1P8fpVqbaG7G2c+YRQviXOiKE39WSIcNllSdvyYgHVF8sGxIuUIG28ctz1yu+pI/DFaiIPm+/6ZPt89dfJANXxeuW9NNE7/z7wiCzp0CUzWiwwUYtpNT2SMhQ+bOujoT19nTuFxTeA5xYDX5/3dlFAZqzkIjLXLb/AweV8Y="
+
 before:
 - ./grailsw refresh-dependencies
+
 script:
 - ./grailsw "test-app unit:"
+
+after_success:
+  - ./grailsw "aws-eb-deploy -Dgrails.env=production -DBEANSTALK_ACCESS_KEY=$BEANSTALK_ACCESS_KEY -DBEANSTALK_SECRET_KEY=$BEANSTALK_SECRET_KEY"
