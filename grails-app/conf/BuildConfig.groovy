@@ -60,6 +60,7 @@ grails.project.dependency.resolution = {
         // plugins for the compile step
         compile ':asset-pipeline:1.8.7'
         compile ':aws-elastic-beanstalk:0.3-SNAPSHOT'
+        compile ':cdn-asset-pipeline:0.3.4'
         compile ':spring-security-oauth:2.0.2'
         compile ':spring-security-oauth-facebook:0.1'
 
@@ -69,7 +70,5 @@ grails.project.dependency.resolution = {
         // plugins needed at runtime but not for compilation
         runtime ':hibernate:3.6.10.13'
         runtime ':segmentio:0.4.2'
-
-        //provided ':cdn-asset-pipeline:0.3.4'
     }
 }

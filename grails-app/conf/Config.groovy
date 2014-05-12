@@ -1,5 +1,3 @@
-import org.scribe.builder.api.GoogleApi
-
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
@@ -214,6 +212,33 @@ grails {
         minifyOptions = [
                 mangleOptions: [mangle: false] // Otherwise it generate issues with AngularJS dependencies injection
         ]
+    }
+}
+
+/**
+ * Assets
+ */
+def cdnStoragePath = "assets/${appName}-${appVersion}/"
+environments {
+    deployment {
+        // Env only used for asset-cdn-push (with a bucket env parameter)
+        dataSource {
+            dbCreate = "create-drop" // one of 'create', 'create-drop', 'update', 'validate', ''
+            url = "jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000"
+        }
+        grails {
+            assets {
+                cdn {
+                    provider = 'S3'
+                    region = 'eu-west-1'
+                    storagePath = cdnStoragePath
+                    expires = 365
+                }
+            }
+        }
+    }
+    production  {
+        grails.assets.url = "${System.getProperty('ASSETS_URL')}/${cdnStoragePath}"
     }
 }
 
