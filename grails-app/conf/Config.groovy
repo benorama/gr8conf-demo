@@ -191,7 +191,7 @@ grails.plugin.springsecurity.oauth.domainClass = 'gr8conf.demo.OAuthID'
 grails {
     assets {
         excludes = [
-                'files/*',                      // .ebextensions
+                'newrelic/*',                   // .ebextensions
                 '*.sh',                         // .ebextensions
                 '*.config',                     // .ebextensions
                 'apple-touch-icon.png',         // legacy assets from plugins web-app
