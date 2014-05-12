@@ -50,18 +50,17 @@ grails.project.dependency.resolution = {
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
-        build 'org.yaml:snakeyaml:1.13' // For AWS Elastic Beanstalk Plugin
+        //build 'org.yaml:snakeyaml:1.13' // For AWS Elastic Beanstalk Plugin
         runtime 'mysql:mysql-connector-java:5.1.30'
     }
 
     plugins {
         // plugins for the build system only
         build ':tomcat:7.0.52.1'
-        build ':aws-elastic-beanstalk:0.3-SNAPSHOT'
-        build ':cdn-asset-pipeline:0.3.4'
 
         // plugins for the compile step
         compile ':asset-pipeline:1.8.7'
+        compile ':aws-elastic-beanstalk:0.3-SNAPSHOT'
         compile ':spring-security-oauth:2.0.2'
         compile ':spring-security-oauth-facebook:0.1'
 
@@ -71,5 +70,7 @@ grails.project.dependency.resolution = {
         // plugins needed at runtime but not for compilation
         runtime ':hibernate:3.6.10.13'
         runtime ':segmentio:0.4.2'
+
+        //provided ':cdn-asset-pipeline:0.3.4'
     }
 }
