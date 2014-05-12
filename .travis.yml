@@ -18,6 +18,7 @@ before:
 
 script:
 - ./grailsw "test-app unit:"
+- ./grailsw war
 
 after_success:
-  - ./grailsw "aws-eb-deploy -Dgrails.env=production -DBEANSTALK_ACCESS_KEY=$BEANSTALK_ACCESS_KEY -DBEANSTALK_SECRET_KEY=$BEANSTALK_SECRET_KEY"
+- ./grailsw "aws-eb-deploy -Dgrails.env=production -DBEANSTALK_ACCESS_KEY=$BEANSTALK_ACCESS_KEY -DBEANSTALK_SECRET_KEY=$BEANSTALK_SECRET_KEY"
