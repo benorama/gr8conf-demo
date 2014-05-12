@@ -44,7 +44,7 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
-        mavenRepo "http://repo.spring.io/milestone/"
+        mavenRepo "http://repo.spring.io/milestone/"    // For Spring Security
         mavenRepo 'http://dl.bintray.com/karman/karman' // For CDN Asset Pipeline plugin
     }
 
@@ -72,7 +72,6 @@ grails.project.dependency.resolution = {
 
         // plugins not required in war
         provided ':cdn-asset-pipeline:0.3.4'
-        provided ':version-update:1.1.1'
 
     }
 }
