@@ -44,12 +44,13 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
-        mavenRepo "http://repo.spring.io/milestone/"    // For Spring Security
+        mavenRepo "http://repo.spring.io/milestone/"    // For Spring Security Plugin
         mavenRepo 'http://dl.bintray.com/karman/karman' // For CDN Asset Pipeline plugin
     }
 
     dependencies {
         // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
+        build 'org.yaml:snakeyaml:1.13' // For AWS Elastic Beanstalk Plugin
         runtime 'mysql:mysql-connector-java:5.1.30'
     }
 
@@ -57,6 +58,7 @@ grails.project.dependency.resolution = {
         // plugins for the build system only
         build ':tomcat:7.0.52.1'
         build ':aws-elastic-beanstalk:0.3-SNAPSHOT'
+        build ':cdn-asset-pipeline:0.3.4'
 
         // plugins for the compile step
         compile ':asset-pipeline:1.8.7'
@@ -69,9 +71,5 @@ grails.project.dependency.resolution = {
         // plugins needed at runtime but not for compilation
         runtime ':hibernate:3.6.10.13'
         runtime ':segmentio:0.4.2'
-
-        // plugins not required in war
-        provided ':cdn-asset-pipeline:0.3.4'
-
     }
 }
