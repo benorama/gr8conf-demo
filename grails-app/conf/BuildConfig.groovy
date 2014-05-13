@@ -65,7 +65,7 @@ grails.project.dependency.resolution = {
 
         // Deployment plugins
         compile ':aws-elastic-beanstalk:0.3-SNAPSHOT'
-        compile ':cdn-asset-pipeline:0.3.4'
+        compile ':cdn-asset-pipeline:0.3.5'
 
         // Monitoring
         compile ':newrelic:1.0-2.18.0'

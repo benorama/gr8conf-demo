@@ -103,11 +103,38 @@ environments {
 
 // log4j configuration
 log4j = {
-    // Example of changing the log pattern for the default console appender:
-    //
-    //appenders {
-    //    console name:'stdout', layout:pattern(conversionPattern: '%c{2} %m%n')
-    //}
+
+    appenders {
+        console name: 'stdout', layout: pattern(conversionPattern: "%d{ISO8601} %p %c{1} - %m%n")
+        environments {
+            development {
+                rollingFile name: 'stacktrace', file: "target/stacktrace.log"
+            }
+            production {
+                rollingFile name: 'logFile', file: "${System.getProperty('catalina.base') ?: 'target'}/logs/${appName}.log"
+                rollingFile name: 'stacktrace', file: "${System.getProperty('catalina.base') ?: 'target'}/logs/${appName}-stacktrace.log"
+            }
+        }
+    }
+
+    environments {
+        development {
+            root {
+                error 'stdout' // Default loggers with ERROR level to console (by default, it logs ERROR level and above)
+            }
+            // Loggers with DEBUG level
+            debug   'grails.app.conf',
+                    'grails.app.controllers',
+                    'grails.app.domain',
+                    'grails.app.filters',
+                    'grails.app.services'
+        }
+        production {
+            root {
+                error 'logFile', 'sentry' // Default loggers with ERROR level to rolling file (by default, it logs ERROR level and above)
+            }
+        }
+    }
 
     error  'org.codehaus.groovy.grails.web.servlet',        // controllers
            'org.codehaus.groovy.grails.web.pages',          // GSP
@@ -188,6 +215,9 @@ grails.plugin.springsecurity.oauth.domainClass = 'gr8conf.demo.OAuthID'
 
 // grails.plugin.springsecurity.ui.password.validationRegex = '' // Disable default RegEx (Password must have at least one letter, number, and special character)
 
+/**
+ * Grails plugins
+ */
 grails {
     assets {
         excludes = [
@@ -212,6 +242,12 @@ grails {
         minifyOptions = [
                 mangleOptions: [mangle: false] // Otherwise it generate issues with AngularJS dependencies injection
         ]
+    }
+    plugins {
+        // Raven plugin (Sentry)
+        raven {
+            dsn = System.getProperty('SENTRY_DSN')
+        }
     }
 }
 
