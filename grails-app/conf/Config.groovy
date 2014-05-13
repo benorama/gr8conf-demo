@@ -232,7 +232,7 @@ grails {
                 'skin/**',                      // legacy assets from plugins web-app
                 'spinner.gif',                  // legacy assets from plugins web-app
                 'springsource.png',             // legacy assets from plugins web-app
-                //'libs/**',                      // all dependencies assets
+                'libs/**',                      // all dependencies assets
         ]
         includes = [
                 'libs/bootstrap-datepicker/js/**.js',
