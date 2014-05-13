@@ -9,6 +9,8 @@ env:
   - secure: Patqw1nK3N7UL9VHzgbq0mEPLPAa0ZipmSJml7BCIJjtel6p3PoL22MzFOPr3klBbhtM5D8bWZvAopg+h5iNXA5pvXdydlm1Nb10p2EahW5FLH5yq5s1r3MutXulWOewh6S33K8pZ9VbEx48vFcuNHLjnGVl6i7onks9W9f1zRU=
   - secure: jiQPEXmrl0+Ta5feXsZYXYhZpPrFXsjqM/Er6r8H5h/W+8iMIuQuci7VBaBdE5ZtR21eCL+YDFtsMAB4DfFQNx6X7fEp4tzbKFZF/kooaDFwxWy86q9DsmI8Q3eIy31sUIGlJnOspkgWhXoaIJVlSoYmR8ajlz6xNFYjT/MIsDM=
 before_script:
+- npm install -g bower
+- bower install
 - ./grailsw refresh-dependencies
 script:
 - ./grailsw asset-precompile
