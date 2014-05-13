@@ -220,7 +220,7 @@ grails.plugin.springsecurity.oauth.domainClass = 'gr8conf.demo.OAuthID'
  */
 grails {
     assets {
-        /*excludes = [
+        excludes = [
                 'newrelic/*',                   // .ebextensions
                 '*.sh',                         // .ebextensions
                 '*.config',                     // .ebextensions
@@ -238,7 +238,7 @@ grails {
                 'libs/bootstrap-datepicker/js/**.js',
                 'libs/font-awesome/fonts/*',
                 'libs/jquery/dist/jquery.js'
-        ]*/
+        ]
         minifyOptions = [
                 mangleOptions: [mangle: false] // Otherwise it generate issues with AngularJS dependencies injection
         ]
@@ -247,6 +247,10 @@ grails {
         // Raven plugin (Sentry)
         raven {
             dsn = System.getProperty('SENTRY_DSN')
+        }
+        // Segmentio plugin
+        segmentio {
+            apiKey = System.getProperty('SEGMENTIO_API_KEY')
         }
     }
 }
