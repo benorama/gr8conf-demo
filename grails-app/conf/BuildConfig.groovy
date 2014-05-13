@@ -1,11 +1,6 @@
-grails.servlet.version = "3.0" // Change depending on target container compliance (2.5 or 3.0)
-grails.project.class.dir = "target/classes"
-grails.project.test.class.dir = "target/test-classes"
-grails.project.test.reports.dir = "target/test-reports"
-grails.project.work.dir = "target/work"
-grails.project.target.level = 1.6
+grails.servlet.version = '3.0' // Change depending on target container compliance (2.5 or 3.0)
+grails.project.work.dir = 'target'
 grails.project.source.level = 1.6
-//grails.project.war.file = "target/${appName}-${appVersion}.war"
 
 grails.project.fork = [
     // configure settings for compilation JVM, note that if you alter the Groovy version forked compilation is required
@@ -41,9 +36,6 @@ grails.project.dependency.resolution = {
         grailsCentral()
         mavenCentral()
         // uncomment these (or add new ones) to enable remote dependency resolution from public Maven repositories
-        //mavenRepo "http://repository.codehaus.org"
-        //mavenRepo "http://download.java.net/maven/2/"
-        //mavenRepo "http://repository.jboss.com/maven2/"
         mavenRepo "http://repo.spring.io/milestone/"    // For Spring Security Plugin
         mavenRepo 'http://dl.bintray.com/karman/karman' // For CDN Asset Pipeline plugin
     }
