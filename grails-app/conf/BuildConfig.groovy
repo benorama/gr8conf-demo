@@ -41,8 +41,10 @@ grails.project.dependency.resolution = {
     }
 
     dependencies {
-        // specify dependencies here under either 'build', 'compile', 'runtime', 'test' or 'provided' scopes e.g.
+        // Latest MySQL Connector
         runtime 'mysql:mysql-connector-java:5.1.30'
+        // Latest NewRelic API
+        compile 'com.newrelic.agent.java:newrelic-api:3.6.0'
     }
 
     plugins {
@@ -60,9 +62,11 @@ grails.project.dependency.resolution = {
         compile ':cdn-asset-pipeline:0.3.5'
 
         // Monitoring
-        compile ':newrelic:1.0-2.18.0'
+        compile(':newrelic:1.0-2.18.0') {
+            excludes 'newrelic-api'
+        }
         compile ':raven:0.5.8' // Sentry
-        runtime ':segmentio:0.4.2'
+        runtime ':segmentio:0.4.3'
 
     }
 }

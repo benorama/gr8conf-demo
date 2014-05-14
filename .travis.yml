@@ -11,8 +11,8 @@ env:
 before_script:
 - npm install -g bower
 - bower install
-- ./grailsw refresh-dependencies
 script:
+- ./grailsw refresh-dependencies
 - ./grailsw "test-app unit:"
 - ./grailsw "asset-cdn-push -Dgrails.env=deployment --directory=gr8conf --gzip=true --access-key=$TRAVIS_ACCESS_KEY --secret-key=$TRAVIS_SECRET_KEY"
 - ./grailsw war

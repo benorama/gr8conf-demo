@@ -243,14 +243,16 @@ grails {
                 mangleOptions: [mangle: false] // Otherwise it generate issues with AngularJS dependencies injection
         ]
     }
+    plugin {
+        // Segmentio plugin
+        segmentio {
+            apiKey = System.getProperty('SEGMENTIO_API_KEY')
+        }
+    }
     plugins {
         // Raven plugin (Sentry)
         raven {
             dsn = System.getProperty('SENTRY_DSN')
-        }
-        // Segmentio plugin
-        segmentio {
-            apiKey = System.getProperty('SEGMENTIO_API_KEY')
         }
     }
 }
@@ -281,7 +283,6 @@ environments {
         grails.assets.url = "${System.getProperty('ASSETS_URL')}/${cdnStoragePath}"
     }
 }
-
 
 /**
  * AWS Beanstalk (only used by Travis for deployment)

@@ -1,6 +1,7 @@
+#!/bin/sh
 # New Relic (Application monitoring)
 mkdir /var/lib/newrelic
-mv ./.ebextensions/newrelic/newrelic*.jar /var/lib/newrelic/
+mv ./.ebextensions/newrelic/newrelic.jar /var/lib/newrelic/
 bash ./.ebextensions/newrelic/newrelic.yml.sh > /var/lib/newrelic/newrelic.yml
 
 # New Relic Agent (Server monitoring)
